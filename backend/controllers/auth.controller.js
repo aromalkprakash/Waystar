@@ -6,6 +6,7 @@ export const signup = async (req, res) => {
 export const login= async (req, res) => {
     res.json({
         data: "U hit the login endpoint"
+    });
 }
 export const logout = async (req, res) => {
     res.json({
