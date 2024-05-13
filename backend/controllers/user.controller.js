@@ -26,7 +26,7 @@ export const followUnfollowUser = async (req, res) => {
         }
         if (!userToModify || !currentUser) return res.status(400).json({ error: 'User not found' });
 
-        const isFollowing = currentUser.following.user(id);
+        const isFollowing = currentUser.following.includes(id);
 
         if (isFollowing) {
             // UnFollow the user
