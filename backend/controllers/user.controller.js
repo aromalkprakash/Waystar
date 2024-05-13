@@ -1,4 +1,4 @@
-import User from "../models/user.model";
+import User from "../models/user.model.js";
 
 export const updateUserProfile = async (req, res) => {
     const { username } = req.params;
@@ -21,7 +21,7 @@ export const followUnfollowUser = async (req, res) => {
         const userToModify = await User.findById(id);
         const currentUser = await User.findById(req.user._id);
 
-        if (id === req.user._id) {
+        if (id === req.user._id.toString()) {
             return res.status(400).json({ error: "You can't follow/UnFollow yourself" });
         }
         if (!userToModify || !currentUser) return res.status(400).json({ error: 'User not found' });
@@ -30,10 +30,16 @@ export const followUnfollowUser = async (req, res) => {
 
         if (isFollowing) {
             // UnFollow the user
+            await User.findByIdAndUpdate(id, { $pull: { followers: req.user._id } });
+            await User.findByIdAndUpdate(req.user._id, { $pull: { following: id } });
+            res.status(200).json({ message: "User Unfollowed Successfully" });
         } else {
             // Follow the user
             await User.findByIdAndUpdate(id, { $push: { followers: req.user._id } });
-            await User.findByIdAndUpdate(req.user._id, { $push :{ following: id }});
+            await User.findByIdAndUpdate(req.user._id, { $push: { following: id } });
+            res.status(200).json({ message: "User followed Successfully" });
+
+            // Send a notification to that User
        }
 
 
