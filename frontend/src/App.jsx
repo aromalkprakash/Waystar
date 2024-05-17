@@ -4,6 +4,7 @@ import HomePage from './Page/Home/HomePage';
 import LoginPage from './Page/auth/login/LoginPage';
 import SignupPage from './Page/auth/signup/SignupPage';
 import Sidebar from './components/common/Sidebar';
+import RightPanel from './components/common/RightPanel';
 
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/signup" element={<SignupPage/>} />
         <Route path='/login' element={<LoginPage/>}/>
       </Routes>
+      <RightPanel/>
     </div>
   )
 }
