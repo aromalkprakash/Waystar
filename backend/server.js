@@ -21,6 +21,8 @@ cloudinary.config({
 const app = express();     // parse req.body
 const PORT = process.env.PORT || 5000
 
+
+
 app.use(cors());
 app.use(express.json());  // parse req.body
 app.use(express.urlencoded({ extended: true }));
