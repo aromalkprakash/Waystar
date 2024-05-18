@@ -25,6 +25,29 @@ const SignUpPage = () => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	};
 
+	const signup = async () => {
+		console.log("SignUp Function Executed", formData);
+		
+		let responseData;
+		await fetch('http://localhost:5000/api/auth/signup', {
+			method: 'POST',
+			headers: {
+				Accept: 'application/form/data',
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(formData),
+		}).then((response) => response.json()).then((data) => responseData = data)
+	
+		if (responseData.success) {
+			localStorage.setFormData('auth-token', responseData.token);
+			window.location.replace("/")
+		}
+		else {
+			alert(responseData.errors)
+		}
+		
+	};
+
 	const isError = false;
 
 	return (

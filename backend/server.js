@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv"
+import cors from "cors"
 import { v2 as cloudinary } from "cloudinary";
 
 import authRoutes from "./routes/auth.route.js";
@@ -20,6 +21,7 @@ cloudinary.config({
 const app = express();     // parse req.body
 const PORT = process.env.PORT || 5000
 
+app.use(cors());
 app.use(express.json());  // parse req.body
 app.use(express.urlencoded({ extended: true }));
 
