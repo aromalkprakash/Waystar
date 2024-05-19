@@ -28,7 +28,8 @@ const App = () => {
       } catch (error) {
         throw new Error(error);
       }
-    }
+    },
+    retry: false,
   });
   
 	if (isLoading) {
