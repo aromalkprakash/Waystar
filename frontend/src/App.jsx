@@ -15,7 +15,6 @@ import LoadingSpinner from './components/common/LoadingSpinner';
 
 const App = () => {
   const { data: authUser, isLoading } = useQuery({
-		// we use queryKey to give a unique name to our query and refer to it later
 		queryKey: ["authUser"],
 		queryFn: async () => {
 			try {
@@ -40,12 +39,14 @@ const App = () => {
 				<LoadingSpinner size='lg' />
 			</div>
 		);
-	}
+  };
+
+ ;
 
 	return (
 		<div className='flex max-w-6xl mx-auto'>
 			{/* Common component, bc it's not wrapped with Routes */}
-			{<Sidebar />}
+			{authUser && <Sidebar />}
 			<Routes>
 				<Route path='/' element={authUser ? <HomePage /> : <Navigate to='/login' />} />
 				<Route path='/login' element={!authUser ? <LoginPage /> : <Navigate to='/' />} />
@@ -53,7 +54,7 @@ const App = () => {
 				<Route path='/notifications' element={authUser ? <NotificationPage /> : <Navigate to='/login' />} />
 				<Route path='/profile/:username' element={authUser ? <ProfilePage /> : <Navigate to='/login' />} />
 			</Routes>
-			{<RightPanel />}
+			{authUser && <RightPanel />}
 			<Toaster />
 		</div>
 	);
