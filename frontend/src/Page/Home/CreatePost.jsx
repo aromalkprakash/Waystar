@@ -13,13 +13,13 @@ const CreatePost = () => {
 	const { data: authUser } = useQuery({ queryKey: ["authUser"] });
 	const queryClient = useQueryClient();
 
-	const { mutate: CreatePost, isPending } = useMutation({
+	const { mutate: CreatePost, isPending, isError, Error } = useMutation({
 		mutationFn: async({ text, img }) => {
 			try {
 				const res = await fetch("/api/posts/create", {
 					method: "POST",
 					headers: {
-						"Contest-Type": "application/json",
+						"Content-Type": "application/json",
 					},
 					body: JSON.stringify ({text,img}),
 				})
