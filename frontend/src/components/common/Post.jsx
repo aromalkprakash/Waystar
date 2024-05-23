@@ -54,9 +54,19 @@ const Post = ({ post }) => {
 				throw new Error(error)
 			}
 		},
-		onSuccess: () => {
-			toast.success("post liked successfully");
-			queryClient.invalidateQueries({ queryKey: ["posts"] });
+		onSuccess: (updatedLikes) => {
+
+			// queryClient.invalidateQueries({ queryKey: ["posts"] });
+
+			queryClient.setQueryData(["posts"], (oldData) => {
+				return oldData.map(p => {
+					if (p._id === post._id) {
+						return { ...p, likes: updatedLikes };
+					}
+					return p;
+				});
+			}); 
+
 		},
 		onError: (error) => {
 			toast.error(error.message)
