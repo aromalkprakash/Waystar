@@ -4,7 +4,6 @@ import { Link, useParams } from "react-router-dom";
 import Posts from "../../components/common/Posts";
 import ProfileHeaderSkeleton from "../../components/skeletons/ProfiileHeaderSkeleton";
 import EditProfileModel from "./EditProfileModel";
-import {formatMemberSinceDate} from "../../../utils/date/index.js"
 
 import { POSTS } from "../../../utils/db/dummy";
 
@@ -13,10 +12,10 @@ import { IoCalendarOutline } from "react-icons/io5";
 import { FaLink } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
 import { useQuery } from "@tanstack/react-query";
+import {formatMemberSinceDate} from "../../../utils/date/index.js"
+
 
 const ProfilePage = () => {
-
-	useQuery({ queryKey: ["authUser"] });
 	
 	const [coverImg, setCoverImg] = useState(null);
 	const [profileImg, setProfileImg] = useState(null);
@@ -24,14 +23,14 @@ const ProfilePage = () => {
 
 	const coverImgRef = useRef(null);
 	const profileImgRef = useRef(null);
-	
+
 	const { username } = useParams();
 
 	const isMyProfile = true;
 	
 
 	const { data: user, isLoading, refetch, isRefetching } = useQuery({
-		queryKey: ["userProfile"],
+		queryKey: ["userProfile",username],
 		queryFn: async () => {
 			try {
 				const res = await fetch(`/api/users/profile/${username}`);
@@ -210,7 +209,7 @@ const ProfilePage = () => {
 						</>
 					)}
 
-					<Posts />
+					<Posts feedType={feedType} username={username} userId = {user?._id} />
 				</div>
 			</div>
 		</>
