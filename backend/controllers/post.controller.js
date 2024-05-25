@@ -43,9 +43,7 @@ export const deletePost = async (req, res) => {
     }
 
     if (post.user.toString() !== req.user._id.toString()) {
-      return res
-        .status(401)
-        .json({ error: "You are not authorized to delete this post" });
+      return res.status(401).json({ error: "You are not authorized to delete this post" });
     }
     if (post.img) {
       const imgId = post.img.split("/").pop().split(".")[0];
