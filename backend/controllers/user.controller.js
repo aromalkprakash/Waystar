@@ -3,6 +3,7 @@ import { v2 as cloudinary } from "cloudinary";
 
 import Notification from "../models/notification.model.js";
 import User from "../models/user.model.js";
+import Post from "../models/post.model.js";
 
 export const getUserProfile = async (req, res) => {
     const { username } = req.params;
@@ -149,3 +150,13 @@ export const updateUser = async (req, res) => {
 		res.status(500).json({ error: error.message });
 	}
 };
+
+export const countPosts = async (req, res) => {
+    const { userId } = req.params;
+    try {
+      const count = await Post.countDocuments({ userId });
+      res.json({ count });
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to fetch post count' });
+    }
+  };
