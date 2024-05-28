@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { BiLogOut } from "react-icons/bi";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import ThemeToggle from "../../hooks/ThemeToggle";
 
 const Sidebar = () => {
 	const queryClient = useQueryClient();
@@ -63,7 +64,7 @@ const Sidebar = () => {
 							<span className='text-lg hidden md:block'>Notifications</span>
 						</Link>
 					</li>
-
+							
 					<li className='flex justify-center md:justify-start'>
 						<Link
 							to={`/profile/${authUser?.username}`}
@@ -72,8 +73,16 @@ const Sidebar = () => {
 							<FaUser className='w-6 h-6' />
 							<span className='text-lg hidden md:block'>Profile</span>
 						</Link>
+						
+					</li>
+					<li className='flex justify-center md:justify-start'>
+						
+							<ThemeToggle className='w-6 h-6' />
+							<span className='text-lg hidden md:block'></span>
+					
 					</li>
 				</ul>
+				
 				{authUser && (
 					<Link
 						to={`/profile/${authUser.username}`}
@@ -89,6 +98,7 @@ const Sidebar = () => {
 								<p className='text-white font-bold text-sm w-20 truncate'>{authUser?.fullName}</p>
 								<p className='text-slate-500 text-sm'>@{authUser?.username}</p>
 							</div>
+							
 							<BiLogOut className='w-5 h-5 cursor-pointer'
 								onClick={(e) => {
 									e.preventDefault();

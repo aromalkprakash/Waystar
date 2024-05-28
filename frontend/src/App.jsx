@@ -11,6 +11,7 @@ import ProfilePage from './Page/profile/ProfilePage';
 import { Toaster } from 'react-hot-toast';
 import { useQuery } from '@tanstack/react-query';
 import LoadingSpinner from './components/common/LoadingSpinner';
+import ThemeToggle from './hooks/ThemeToggle';
 
 
 const App = () => {
@@ -55,7 +56,9 @@ const App = () => {
 				<Route path='/profile/:username' element={authUser ? <ProfilePage /> : <Navigate to='/login' />} />
 			</Routes>
 			{authUser && <RightPanel />}
+			
 			<Toaster />
+			
 		</div>
 	);
 }
