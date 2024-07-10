@@ -13,7 +13,7 @@ export const getNotifications = async (req, res) => {
        res.status(200).json(notifications);
    } catch (error) {
        console.log("Error in getNotifications controller", error);
-       return res.status(500).json({ error: "Intervel Server Issue" });
+       return res.status(500).json({ error: "Internal Server Issue" });
    }
 }
 

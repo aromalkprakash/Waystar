@@ -11,7 +11,6 @@ import ProfilePage from './Page/profile/ProfilePage';
 import { Toaster } from 'react-hot-toast';
 import { useQuery } from '@tanstack/react-query';
 import LoadingSpinner from './components/common/LoadingSpinner';
-import ThemeToggle from './hooks/ThemeToggle';
 
 
 const App = () => {

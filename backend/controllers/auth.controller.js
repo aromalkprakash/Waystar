@@ -1,6 +1,5 @@
 import User from "../models/user.model.js";
 import bcrypt from "bcryptjs"
-import cors from "cors";
 import { generateTokenAndSetCookie } from "../lib/utils/generateTokens.js";
 
 
@@ -60,7 +59,7 @@ export const signup = async (req, res) => {
         console.log("Error in signup controller", error.message);
         res.status(500).json({ error: "Internal server issue" });
     }
-}
+};
 export const login= async (req, res) => {
     try {
         const { username, password } = req.body 
