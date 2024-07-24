@@ -30,8 +30,7 @@ const ProfilePage = () => {
 
   const { data: authUser } = useQuery({ queryKey: ["authUser"] });
 
-  const {
-    data: user, isLoading, refetch, isRefetching, } = useQuery({
+  const { data: user, isLoading, refetch, isRefetching, } = useQuery({
     queryKey: ["userProfile", username],
     queryFn: async () => {
       try {
