@@ -9,7 +9,7 @@ export default defineConfig({
     port: 5555,
     proxy: {
       "/api": {
-        target: "https://waystar-backend.onrender.com/",
+        target: "https://waystar-backend.onrender.com",
         changeOrigin: true ,
       }
     }
