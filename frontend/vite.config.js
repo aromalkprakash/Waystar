@@ -11,6 +11,7 @@ export default defineConfig({
       "/api": {
         target: "https://waystar-backend.onrender.com",
         changeOrigin: true ,
+        pathRewrite: { "^/api": "" }
       }
     }
   },
