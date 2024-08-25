@@ -153,7 +153,7 @@ export const getAllPosts = async (req, res) => {
 };
 
 export const getLikedPosts = async (req, res) => {
-  const userId = req.params.id;
+  const userId = req.params;
 
   try {
     const user = await User.findById(userId);
